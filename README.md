@@ -16,3 +16,4 @@ This is my first Repository
 12.	Файл .terraformrc
 13.	Файл terraform.rc
 
+New line
