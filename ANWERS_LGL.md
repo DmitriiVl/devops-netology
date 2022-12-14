@@ -1,4 +1,4 @@
-#Ответы на последний урок в блоке GIT
+##Ответы на последний урок в блоке GIT
 1. Найдите полный хеш и комментарий коммита, хеш которого начинается на aefea.
 	commit aefead2207ef7e2aa5dc81a34aedf0cad4c32545
 	Update CHANGELOG.md
@@ -20,12 +20,12 @@
 	dd01a35078f040ca984cdd349f18d0b67e486c35 Update CHANGELOG.md
 	225466bc3e5f35baa5d07197bbc079345b77525e Cleanup after v0.12.23 release
 5. Найдите коммит в котором была создана функция func providerSource, ее определение в коде выглядит так func providerSource(...) (вместо троеточия перечислены аргументы).
-\\ 8c928e83589d90a031f811fae52a81be7153e82f
+	8c928e83589d90a031f811fae52a81be7153e82f
 6. Найдите все коммиты в которых была изменена функция globalPluginDirs.
-\\ 125eb51dc4 Remove accidentally-committed binary
-22c121df86 Bump compatibility version to 1.3.0 for terraform core release (#30988)
-35a058fb3d main: configure credentials from the CLI config file
-c0b1761096 prevent log output during init
-8364383c35 Push plugin discovery down into command package
+	125eb51dc4 Remove accidentally-committed binary
+	22c121df86 Bump compatibility version to 1.3.0 for terraform core release (#30988)
+	35a058fb3d main: configure credentials from the CLI config file
+	c0b1761096 prevent log output during init
+	8364383c35 Push plugin discovery down into command package
 7. Кто автор функции synchronizedWriters?
-\\ Martin Atkins <mart@degeneration.co.uk>
+	Martin Atkins <mart@degeneration.co.uk>
