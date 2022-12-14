@@ -28,4 +28,5 @@
 	c0b1761096 prevent log output during init
 	8364383c35 Push plugin discovery down into command package
 7. Кто автор функции synchronizedWriters?
+
 	Martin Atkins <mart@degeneration.co.uk>
