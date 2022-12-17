@@ -29,11 +29,12 @@
 * 8c928e83589d90a031f811fae52a81be7153e82f
 6. Найдите все коммиты в которых была изменена функция globalPluginDirs.
 
-* 125eb51dc4 Remove accidentally-committed binary
-* 22c121df86 Bump compatibility version to 1.3.0 for terraform core release (#30988)
-* 35a058fb3d main: configure credentials from the CLI config file
-* c0b1761096 prevent log output during init
-* 8364383c35 Push plugin discovery down into command package
+* 78b1220558
+* 52dbf94834
+* 41ab0aef7a
+* 66ebff90cd
+* 8364383c35
+
 7. Кто автор функции synchronizedWriters?
 
 	Martin Atkins <mart@degeneration.co.uk>
