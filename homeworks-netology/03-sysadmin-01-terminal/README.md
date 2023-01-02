@@ -16,7 +16,8 @@ Patterns  to  be  brace  expanded  take the form of an optional preamble, follow
 * cp /bin/bash/ /tmp/new_path_directory/bash/
 * PATH=/tmp/new_path_directory/bash/:$PATH
 * cat /etc/environment (для проверки)
-* type -a bash:
+* type -a bash:  
+
 ![Type](img/type-bash.jpg)
 10. Обе утилиты входят в пакет at. Используются для планирования однократного выполнения задания. At - на конкретное время, batch - на время, когда нагруженность системы менее 1.5 (согласно man batch, строка 26).
 
