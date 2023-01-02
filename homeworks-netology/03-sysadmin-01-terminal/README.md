@@ -18,6 +18,6 @@ Patterns  to  be  brace  expanded  take the form of an optional preamble, follow
 * cat /etc/environment (для проверки)
 * type -a bash:  
 
-![Type](img/type-bash.jpg)
+![Type](img/type-bash.jpg)  
 10. Обе утилиты входят в пакет at. Используются для планирования однократного выполнения задания. At - на конкретное время, batch - на время, когда нагруженность системы менее 1.5 (согласно man batch, строка 26).
 
