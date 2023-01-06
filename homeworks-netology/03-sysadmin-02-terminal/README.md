@@ -1,6 +1,6 @@
 ## Ответы на задания 03-sysadmin-02-terminal
 1. Вывод команды type -a cd предоставляет следующие данные: *cd is a shell builtin*. Таким образом, cd - встроенная в bash утилита.
-2. Команде *grep cpu /proc/cpuinfo | wc -l* в данном случае будет эквивалентна команда *grep -c 'cpu' /proc/cpuinfo *
+2. Команде *grep cpu /proc/cpuinfo | wc -l* в данном случае будет эквивалентна команда *grep -c 'cpu' /proc/cpuinfo*
 3. Процесс с PID 1 в ОС Ubuntu 20.04 называется systemd(1).
 4. Например, команда может выглядеть следующим образом *ls -l /root/ 2> /dev/pts/1*.
 5. Один из вариантом работающего примера будет выглядеть таким образом *sort </proc/cpuinfo >aboutcpu.txt*.
