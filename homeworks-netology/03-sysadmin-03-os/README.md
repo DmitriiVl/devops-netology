@@ -17,7 +17,8 @@
 * -o option-name  
 Изпользовать в подобном виде в скриптах полезно, т.к. оболочка и проверяет инициализации переменных в скрипте и проверяет, чтобы все команды в скрипте завершились успешно.
 9. Максимальное количество в системе процессов со статусом *S**, далее по количеству статус *I*. Процессов со статусом *R* минимальное количетсво - в моем случае всего 2. По вопросу статусов процессов, информация из man следующая:  
-PROCESS STATE CODES  
+PROCESS STATE CODES 
+
 Here are the different values that the s, stat and state output specifiers (header "STAT" or "S") will display to describe the state of a process:  
 * D   * uninterruptible sleep (usually IO)  
 * I    Idle kernel thread  
