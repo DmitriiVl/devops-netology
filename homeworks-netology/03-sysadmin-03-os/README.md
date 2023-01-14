@@ -34,5 +34,5 @@ For BSD formats and when the stat keyword is used, additional characters may be 
 * L    has pages locked into memory (for real-time and custom IO)  
 * s    is a session leader  
 * l    is multi-threaded (using CLONE_THREAD, like NPTL pthreads do)  
-* +    is in the foreground process group  
+* *+*  is in the foreground process group  
 
