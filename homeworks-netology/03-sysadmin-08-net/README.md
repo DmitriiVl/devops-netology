@@ -153,7 +153,7 @@ Paths: (20 available, best #14, table default)
       path 7FE11B68BC08 RPKI State valid
       rx pathid: 0, tx pathid: 0
 ```  
-2. Создание dummy0 интерфейса: 
+2. Создание dummy0 интерфейса:  
 *sudo ip link add dummy0 type dummy*  
 *sudo ip addr add 192.168.198.15 dev dummy0*  
 *sudo ip link set dummy0 up*  
