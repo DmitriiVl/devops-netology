@@ -2,7 +2,7 @@
 1. Регистрация прошла успешно, пароли сохраняются:  
 ![BIT](img/bitwarden.jpg)  
 2. Настройка двухфакторной аутентификации прошла успешно:  
-![2FA](img/bitwarden.jpg)  
+![2FA](img/2fa.jpg)  
 3. Настройка apache сервера и https на самоподписанном сертификате прошла успешно:  
 ![HTTPSs](img/httpssite.jpg)  
 4. Тестирование на TLS уязвимости произвольного сайта прошло успешно:  
@@ -15,7 +15,7 @@
 Подключение к ssh серверу по hostname:  
 ![SSHhn](img/sshhostname.jpg)  
 7. Захват пакетов в файл командой *sudo tcpdump -w enp0s3.pcap -c 100 -i enp0s3* представлен на скриншоте:  
-![TCPd](img/dcpdump.jpg)  
+![TCPd](img/tcpdump.jpg)  
 Открытие enp0s3.pcap файла в Wireshark выглядит следующим образом:  
 ![WIREsh](img/wshark.jpg)  
 
