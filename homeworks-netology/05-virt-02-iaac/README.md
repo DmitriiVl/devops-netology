@@ -26,8 +26,8 @@ root@Ubuntu20:/home/dmivlad/Downloads# vboxmanage --version
 6.1.38_Ubuntur153438
 ```
 ```
-root@Ubuntu20:/home/dmivlad/Downloads# vboxmanage --version
-6.1.38_Ubuntur153438
+root@Ubuntu20:~$ vagrant --version
+Vagrant 2.2.6
 ```
 ```
 root@Ubuntu20:/home/dmivlad/Downloads# terraform --version
