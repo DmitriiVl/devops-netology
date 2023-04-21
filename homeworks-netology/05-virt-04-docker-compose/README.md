@@ -21,6 +21,6 @@
 5. Чтобы получить зачёт, предоставьте:
 скриншот работающего веб-интерфейса Grafana с текущими метриками, как на примере ниже.  
 ## Решение 4  
-![GrafanaMon](img/grafana-monitoring.jpg.jpg)
+![GRAFANAMON](img/grafana-monitoring.jpg.jpg)
 
 
