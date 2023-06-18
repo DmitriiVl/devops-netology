@@ -26,7 +26,7 @@ docker pull mysql:8.0
 docker volume create data_mysql
 docker run -d --rm --name mysql_netology -e MYSQL_ROOT_PASSWORD=mysql -ti -p 3306:3306 -v data_mysql:/etc/mysql/ mysql:8.0
 ```
-Выводим писок запущенных контейнеров:  
+Выводим список запущенных контейнеров:  
 ![DOCKERMYSQLUP](img/dockermysqlup.jpg)  
 
 Подключаемся к контейнеру и серверу MySQL:  
