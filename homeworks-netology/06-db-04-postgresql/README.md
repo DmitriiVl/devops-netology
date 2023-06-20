@@ -127,5 +127,14 @@ insert into orders (id, title, price) select * from new_orders;
 
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
 
+## Решение 4  
+
+Дамп базы делаем с применением следующей команды:  
+```
+pg_dump -U postgres -d netology_postgres > /var/lib/postgresql/dbdump/netology_postgres.sql.bak
+```
+
+Уникальность может быть добавлена с примерением уникального ID для значения, в случае с postgres это index.  
+
 ---
 
