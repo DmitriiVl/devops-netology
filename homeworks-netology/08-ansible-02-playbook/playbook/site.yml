@@ -1,0 +1,84 @@
+---
+- name: Install Clickhouse
+  hosts: clickhouse
+  handlers:
+    - name: Start clickhouse service
+      become: true
+      ansible.builtin.service:
+        name: clickhouse-server
+        state: restarted
+  tasks:
+    - block:
+        - name: Get clickhouse distrib
+          ansible.builtin.get_url:
+            url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
+            dest: "./{{ item }}-{{ clickhouse_version }}.rpm"
+          with_items: "{{ clickhouse_packages }}"
+      rescue:
+        - name: Get clickhouse distrib
+          ansible.builtin.get_url:
+            url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
+            dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
+    - name: Install clickhouse packages
+      become: true
+      ansible.builtin.yum:
+        name:
+          - clickhouse-common-static-{{ clickhouse_version }}.rpm
+          - clickhouse-client-{{ clickhouse_version }}.rpm
+          - clickhouse-server-{{ clickhouse_version }}.rpm
+      notify: Start clickhouse service
+    - name: Flush handlers
+      meta: flush_handlers
+    - name: Create database
+      ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
+      register: create_db
+      failed_when: create_db.rc != 0 and create_db.rc !=82
+      changed_when: create_db.rc == 0
+# Play vector installation
+- name: Install vector
+  hosts: vector
+  handlers:
+          # - name: Start vector service
+          # become: true
+          #become_method: sudo
+      #      ansible.builtin.service:
+      #  name: vector
+      #  state: restarted
+
+  tasks:
+    - name: Vector | Install package
+      become: true
+      become_method: sudo
+      ansible.builtin.apt:
+        deb: "https://packages.timber.io/vector/{{ vector_version }}/{{ vector_package }}_{{ vector_version }}-1_{{ vector_architecture }}.deb"
+        state: present
+      tags:
+        - install_vector
+
+    - name: Vector | Generate config
+      become: true
+      become_method: sudo
+      ansible.builtin.template:
+        src: vector.yml.j2
+        mode: 0644
+        dest: "{{ vector_config_dir }}/vector.yml"
+      tags:
+        - configure_vector
+      changed_when: true
+      #notify: Start vector service
+
+    - name: Vector | Configure service
+      become: true
+      become_method: sudo
+      ansible.builtin.template:
+        src: vector.service.j2
+        dest: /lib/systemd/system/vector.service
+        mode: 0644
+        backup: true
+      tags:
+        - configure_vector
+
+          #    - name: Flush handlers
+          #ansible.builtin.meta: flush_handlers
+          #tags:
+          #- configure_vector
