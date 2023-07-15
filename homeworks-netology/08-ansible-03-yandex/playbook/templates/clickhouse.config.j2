@@ -1,0 +1,74 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
+<?xml version="1.0"?>
+{{ ansible_managed | comment('xml') }} 
+<clickhouse>
+    <logger>
+        <!-- Possible levels: https://github.com/pocoproject/poco/blob/develop/Foundation/include/Poco/Logger.h#L105 -->
+        <level>{{ clickhouse_logger.level }}</level>
+        <log>{{ clickhouse_logger.log }}</log>
+        <errorlog>{{ clickhouse_logger.errorlog }}</errorlog>
+        <size>{{ clickhouse_logger.size }}</size>
+        <count>{{ clickhouse_logger.count }}</count>
+    </logger>
+{% if clickhouse_https_port is defined %}
+    <https_port>{{ clickhouse_https_port }}</https_port>
+{% else %}
+    <http_port>{{ clickhouse_http_port }}</http_port>
+{% endif %}
+
+{% if clickhouse_tcp_secure_port is defined %}
+    <tcp_port_secure>{{ clickhouse_tcp_secure_port }}</tcp_port_secure>
+{% else %}
+    <tcp_port>{{ clickhouse_tcp_port }}</tcp_port>
+{% endif %}
+
+    <!-- Default root page on http[s] server. For example load UI from https://tabix.io/ when opening http://localhost:8123 -->
+    <!--
+    <http_server_default_response><![CDATA[<html ng-app="SMI2"><head><base href="http://ui.tabix.io/"></head><body><div ui-view="" class="content-ui"></div><script src="http://loader.tabix.io/master.js"></script></body></html>]]></http_server_default_response>
+    -->
+
+    <!-- Port for communication between replicas. Used for data exchange. -->
+{% if clickhouse_interserver_https is defined %}
+    <interserver_https_port>{{ clickhouse_interserver_https }}</interserver_https_port>
+{% else %}
+    <interserver_http_port>{{ clickhouse_interserver_http }}</interserver_http_port>
+{% endif %}
+
+{% if clickhouse_interserver_http_credentials is defined %}
+<interserver_http_credentials>
+    <user>{{ clickhouse_interserver_http_credentials.user }}</user>
+    <password>{{ clickhouse_interserver_http_credentials.password }}</password>
+</interserver_http_credentials>
+{% endif %}
+
+
+    <!-- Hostname that is used by other replicas to request this server.
+         If not specified, than it is determined analoguous to 'hostname -f' command.
+         This setting could be used to switch replication to another network interface.
+      -->
+    <!--
+    <interserver_http_host>example.clickhouse.com</interserver_http_host>
+    -->
+{% if clickhouse_interserver_http_host is defined %}
+    <interserver_http_host>{{ clickhouse_interserver_http_host }}</interserver_http_host>
+{% endif %}
+
+    <!-- Listen specified host. use :: (wildcard IPv6 address), if you want to accept connections both with IPv4 and IPv6 from everywhere. -->
+    <!-- <listen_host>::</listen_host> -->
+    <!-- Same for hosts with disabled ipv6: -->
+    <!-- <listen_host>0.0.0.0</listen_host> -->
+{% for host in clickhouse_listen_host %}
+    <listen_host>{{ host }}</listen_host>
+{% endfor %}
+
+    <!-- Path to data directory, with trailing slash. -->
+    <path>{{ clickhouse_path_data }}</path>
+
+    <!-- Path to temporary data for processing hard queries. -->
+    <tmp_path>{{ clickhouse_path_tmp }}</tmp_path>
+
+    <!-- Path to configuration file with users, access rights, profiles of settings, quotas. -->
+    <users_config>{{ clickhouse_path_configdir }}/users.d/users.xml</users_config>
+
+    <mark_cache_size>{{ mark_cache_size }}</mark_cache_size>
+</clickhouse>

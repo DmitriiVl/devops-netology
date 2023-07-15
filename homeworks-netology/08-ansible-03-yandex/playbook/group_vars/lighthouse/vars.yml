@@ -1,0 +1,15 @@
+---
+# nginx user
+nginx_user_name: nginx
+
+# change http default port for nginx
+nginx_default_port: 8009
+
+# lighthouse distr
+lighthouse_dist: "https://github.com/VKCOM/lighthouse.git"
+
+# directory for lighthouse installation
+lighthouse_dir: "/usr/share/lighthouse"
+
+# lighthouse http port
+lighthouse_port: 9000
