@@ -41,12 +41,12 @@
 
 В рамках подготовки к заданию Jira получена, аккаунт создан. Необходимые настройки произведены. Доски Kanban и Scrum созданы.  
 
-В рамках основной части файлы с xml выгрузками по workflows созданы и находятся по ссылкам: отдельный workflow [wf bug](assets/Bugs-WF.xml) для задач вида bugs и workflow [wf general](assets/All tasks except Bugs.xml) для всех остальных видов задач.  
+В рамках основной части файлы с xml выгрузками по workflows созданы и находятся по ссылкам: отдельный workflow [wf bug](assets/Bugs-WF.xml) для задач вида bugs и workflow [wf general](assets/All-tasks-except-Bugs.xml) для всех остальных видов задач.  
 
 Скриншот Kanban доски:  
 
-![KANBANBOARD](img/kanbanboard.jpg)  
+![KANBANBOARD](assets/kanbanboard.jpg)  
 
 Скриншот Scrum доски:  
 
-![SCRUMBOARD](img/scrumboard.jpg)  
+![SCRUMBOARD](assets/scrumboard.jpg)  
