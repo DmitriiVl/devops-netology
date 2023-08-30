@@ -1,0 +1,57 @@
+---
+# tasks file for vector-role
+- name: Vector | Check virttype
+  ansible.builtin.debug:
+    msg: "{{ ansible_play_hosts|
+                 map('extract', hostvars, 'ansible_virtualization_type')|
+                 list }}"
+  run_once: true
+
+- name: Vector | Install package Debian/Ubuntu
+  become: true
+  become_method: sudo
+  ansible.builtin.apt:
+    deb: "{{ debian_vector_repo }}"
+    install_recommends: yes
+    state: present
+  when: ansible_os_family == 'Debian'
+  tags:
+    - install_vector
+
+- name: Vector | Install package Fedora
+  become: true
+  become_method: sudo
+  ansible.builtin.yum:
+    name: "{{ centos_vector_repo }}"
+    state: present
+    disable_gpg_check: yes
+  when: ansible_os_family == 'RedHat'
+  tags:
+    - install_vector
+
+- name: Vector | Generate config
+  become: true
+  become_method: sudo
+  ansible.builtin.template:
+    src: vector.yml.j2
+    mode: 0644
+    dest: "{{ vector_config_dir }}/vector.yml"
+  tags:
+    - configure_vector
+  notify: Start vector service
+
+- name: Vector | Configure service
+  become: true
+  become_method: sudo
+  ansible.builtin.template:
+    src: vector.service.j2
+    dest: /usr/lib/systemd/system/vector.service
+    mode: 0644
+    backup: true
+  tags:
+    - configure_vector
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+  tags:
+    - configure_vector

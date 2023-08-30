@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+platforms:
+  - name: ubuntu_2204
+    box: "generic/ubuntu2204"
+    memory: 2048
+    cpus: 2
+    interfaces:
+      - network_name: private_network
+        ip: 192.168.100.100
+        guest: 80
+        host: 8081
+    provider_raw_config_args:
+      - "customize [ 'modifyvm', :id, '--natdnshostresolver1', 'on' ]"
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+provisioner:
+  name: ansible
+lint: |
+  yamllint .
+  ansible-lint .
+verifier:
+  name: ansible
+  options:
+    sudo: true

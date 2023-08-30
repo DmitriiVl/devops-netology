@@ -1,0 +1,32 @@
+---
+# defaults file for vector
+# url for connection to the clickhouse server
+clickhouse_source: http://192.168.150.9:8123
+
+# Vector configuration
+vector_config:
+  sources:
+    sample_file:
+      type: file
+      read_from: beginning
+      include:
+        # using syslog as an example
+        - /var/log/syslog
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        # 'sample_file' from 'sources' above
+        - sample_file
+      database: logs
+      # clickhouse URL
+      endpoint: "{{ clickhouse_source }}"
+      table: vector_logs
+      # example of user with plain-defined password in clickhouse DBMS
+      auth:
+        strategy: basic
+        user: vector
+        password: vector
+      healthcheck: true
+      skip_unknown_fields: true
+      compression: gzip

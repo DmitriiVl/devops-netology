@@ -1,0 +1,11 @@
+---
+# vars file for vector-role
+# vector site
+vector_url: "https://packages.timber.io/vector"
+# a version of vector we need
+vector_version: "0.25.1"
+# packages
+centos_vector_repo: "{{ vector_url }}/{{ vector_version }}/vector-{{ vector_version }}-1.x86_64.rpm"
+debian_vector_repo: "{{ vector_url }}/{{ vector_version }}/vector_{{ vector_version }}-1_amd64.deb"
+# default vector directory
+vector_config_dir: /etc/vector

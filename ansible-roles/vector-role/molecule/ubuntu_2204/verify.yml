@@ -1,0 +1,20 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Get Vector version
+    ansible.builtin.command: "vector --version"
+    changed_when: false
+    register: vector_version
+
+  - name: Confirm Vector installation
+    ansible.builtin.assert:
+      that: "'{{ vector_version.rc }}' == '0'"
+
+  - name: Validate availability of configuration file
+    ansible.builtin.command: "vector validate --no-environment --config-yaml /etc/vector/vector.yml"
+    register: vector_validate
+    changed_when: false

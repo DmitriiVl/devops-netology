@@ -1,0 +1,33 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+platforms:
+  - name: fedora37
+    box: "generic/fedora37"
+    memory: 2048
+    cpus: 2
+    disksize:
+      size: 10240
+    interfaces:
+      - network_name: private_network
+        ip: 192.168.100.99
+        guest: 80
+        host: 8081
+    provider_raw_config_args:
+      - "customize [ 'modifyvm', :id, '--natdnshostresolver1', 'on' ]"
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+provisioner:
+  name: ansible
+lint: |
+  yamllint .
+  ansible-lint .
+verifier:
+  name: ansible
+  options:
+    sudo: true

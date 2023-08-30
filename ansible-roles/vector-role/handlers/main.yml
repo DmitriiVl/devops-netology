@@ -1,0 +1,9 @@
+---
+# handlers file for vector-role
+- name: Start vector service
+  become: true
+  become_method: sudo
+  ansible.builtin.service:
+    name: vector
+    state: restarted
+  when: ansible_virtualization_type != "container"
