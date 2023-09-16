@@ -1,0 +1,5 @@
+---
+# vars file for vector-role
+vector_package: "vector"
+vector_architecture: "amd64"
+vector_config_dir: /etc/vector

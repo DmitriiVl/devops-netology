@@ -1,0 +1,39 @@
+---
+# tasks file for vector-role
+- name: Vector | Install package
+  become: true
+  become_method: sudo
+  ansible.builtin.apt:
+    deb: "https://packages.timber.io/vector/{{ vector_version }}/{{ vector_package }}_{{ vector_version }}-1_{{ vector_architecture }}.deb"
+    state: present
+  tags:
+    - install_vector
+
+- name: Vector | Generate config
+  become: true
+  become_method: sudo
+  ansible.builtin.template:
+    src: vector.yml.j2
+    mode: 0644
+    dest: "{{ vector_config_dir }}/vector.yml"
+  tags:
+    - configure_vector
+  changed_when: true
+  notify: Start vector service
+
+- name: Vector | Configure service
+  become: true
+  become_method: sudo
+  ansible.builtin.template:
+    src: vector.service.j2
+    dest: /usr/lib/systemd/system/vector.service
+    mode: 0644
+    backup: true
+  tags:
+    - configure_vector
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+  tags:
+    - configure_vector
+
