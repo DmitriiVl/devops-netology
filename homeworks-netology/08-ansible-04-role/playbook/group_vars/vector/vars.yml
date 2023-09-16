@@ -1,0 +1,34 @@
+---
+# a version of vector we need
+vector_version: "0.25.1"
+# package we need for vector installation
+vector_package: "vector"
+# x86_64 OS
+vector_architecture: "amd64"
+
+vector_config_dir: /etc/vector
+
+# Vector configuration
+vector_config:
+  sources:
+    sample_file:
+      type: file
+      read_from: beginning
+      include:
+        # using syslog as an example
+        - /var/log/syslog
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        # we take 'sample_file' from 'sources' above
+        - sample_file
+      database: logs
+      table: vector_logs
+      auth:
+        strategy: basic
+        user: vector
+        password: vector
+      healthcheck: true
+      skip_unknown_fields: true
+      compression: gzip

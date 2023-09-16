@@ -1,0 +1,18 @@
+---
+# Play nginx installation
+- name: Install lighthouse
+  hosts: lighthouse
+  roles:
+  - lighthouse
+
+# Play clickhouse installation
+- name: Install clickhouse
+  hosts: clickhouse
+  roles:
+    - clickhouse-role
+
+# Play vector installation
+- name: Install vector
+  hosts: vector
+  roles:
+    - vector-role
