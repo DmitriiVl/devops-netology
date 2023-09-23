@@ -48,7 +48,7 @@
 ## Ответ к задаче 2
 
 | Название ПО | Поддержка кластеризации | Хранение сообщений на диске | Скорость работы | Поддержка различных форматов сообщений | Разделение прав доступа к различным потокам | Простота эксплуатации |
-|------|------------|---|---|---|---|
+|------|------------|---|---|---|---|---|
 |**Kafka**|yes|yes|high, even high-load applications|yes|yes|the most simple|
 |**RabbitMQ**|yes|yes|high except in high-load applications|yes|yes|yes, except high load services|
 |**AWS SNS/SQS**|yes|yes|yes|yes|yes|yes, if your company uses Amazon infrastructure|
