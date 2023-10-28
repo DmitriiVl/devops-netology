@@ -243,5 +243,14 @@ spec:
 Проверяем запуск:  
 ![UPINGRESS](assets/up-ingress.jpg)  
 
+Проверяем работоспособность первого домена:  
+
+![TESTINGRESS](assets/test-ingress.jpg)  
+
+Проверяем работоспособность второго домена:  
+
+![TESTINGRESS2](assets/test-ingress2.jpg)  
+
+
 
 
