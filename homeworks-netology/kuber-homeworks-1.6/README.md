@@ -167,7 +167,7 @@ dep-volume-connect-5d775bb7c4-gqc6v:/#
 
 <summary>DaemonSet with multitool and hostPath Volume</summary>
 
-</details>
+<details>
 
 ```yaml
 apiVersion: apps/v1
@@ -213,6 +213,8 @@ spec:
 ![DSUP](assets/dsup.jpg)  
 
 Подключаемся к POD, в нем должна быть примонтирована директория и доступен файл лога по пути /var/cluster-syslog:  
+
+<summary>Checking syslog access</summary>
 
 <details>
 
