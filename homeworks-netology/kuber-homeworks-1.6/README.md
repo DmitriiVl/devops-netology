@@ -165,9 +165,8 @@ dep-volume-connect-5d775bb7c4-gqc6v:/#
 
 Готовим манифест для DaemonSet с созданием Volume типа hostPath для доступа к файлу syslog, расположенному на ноде:  
 
-<summary>DaemonSet with multitool and hostPath Volume</summary>
-
 <details>
+<summary>DaemonSet with multitool and hostPath Volume</summary>
 
 ```yaml
 apiVersion: apps/v1
@@ -214,9 +213,9 @@ spec:
 
 Подключаемся к POD, в нем должна быть примонтирована директория и доступен файл лога по пути /var/cluster-syslog:  
 
-<summary>Checking syslog access</summary>
-
 <details>
+
+<summary>Checking syslog access</summary>
 
 ```yaml
 dmivlad@Ubuntu-Kuber:/var/log$ kubectl exec -it ds-syslog-mount-7wcwk -c multitool -- bin/bash
