@@ -40,15 +40,16 @@ Jenkins развернут с помощью playbook, настроен аген
 
 ![MOLPARAM](assets/molparam.jpg)  
 
-К сожалению, при запуске теста (пробовалось в различных вариациях с различными ролями) тест валится с ошибкой  
+Тест запускается и проходит успешно:  
 
-```
+<details>
+<summary>Freestyle Job</summary>
 Started by user admin
 Running as SYSTEM
-Building remotely on jenkins-agent (linux ansible) in workspace /opt/jenkins_agent/workspace/dimarole
+Building remotely on jenkins-agent (linux ansible) in workspace /opt/jenkins_agent/workspace/another-vector-role
 The recommended git tool is: NONE
 No credentials specified
- > git rev-parse --resolve-git-dir /opt/jenkins_agent/workspace/dimarole/.git # timeout=10
+ > git rev-parse --resolve-git-dir /opt/jenkins_agent/workspace/another-vector-role/.git # timeout=10
 Fetching changes from the remote Git repository
  > git config remote.origin.url https://github.com/DmitriiVl/another-vector-role.git # timeout=10
 Fetching upstream changes from https://github.com/DmitriiVl/another-vector-role.git
@@ -56,32 +57,55 @@ Fetching upstream changes from https://github.com/DmitriiVl/another-vector-role.
  > git --version # 'git version 1.8.3.1'
  > git fetch --tags --progress https://github.com/DmitriiVl/another-vector-role.git +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
-Checking out Revision 5186fee8ff36ec4ecf456e3bfbd0d4c13976479c (refs/remotes/origin/main)
+Checking out Revision 2d55f70d05ce272d6709a3f07a2662eb38cc4c7c (refs/remotes/origin/main)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 5186fee8ff36ec4ecf456e3bfbd0d4c13976479c # timeout=10
-Commit message: "update avr"
- > git rev-list --no-walk 5186fee8ff36ec4ecf456e3bfbd0d4c13976479c # timeout=10
-[dimarole] $ /bin/sh -xe /tmp/jenkins2120882177788911857.sh
-+ molecule test -s centos_8
+ > git checkout -f 2d55f70d05ce272d6709a3f07a2662eb38cc4c7c # timeout=10
+Commit message: "Modify avr"
+ > git rev-list --no-walk 4b3565d9cc9b59439c1755635e9c250176aa0084 # timeout=10
+[another-vector-role] $ /bin/sh -xe /tmp/jenkins8882551546374690496.sh
++ molecule --version
+/usr/local/lib/python3.6/site-packages/requests/__init__.py:104: RequestsDependencyWarning: urllib3 (1.26.18) or chardet (5.0.0)/charset_normalizer (2.0.12) doesn't match a supported version!
+  RequestsDependencyWarning)
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the 
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14 
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be 
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
 /usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
   from cryptography.exceptions import InvalidSignature
-/home/jenkins/.local/lib/python3.6/site-packages/requests/__init__.py:104: RequestsDependencyWarning: urllib3 (1.26.17) or chardet (5.0.0)/charset_normalizer (2.0.12) doesn't match a supported version!
+molecule 3.5.2 using python 3.6 
+    ansible:2.11.12
+    delegated:3.5.2 from molecule
+    docker:1.1.0 from molecule_docker requiring collections: community.docker>=1.9.1
++ molecule test -s centos7
+/usr/local/lib/python3.6/site-packages/requests/__init__.py:104: RequestsDependencyWarning: urllib3 (1.26.18) or chardet (5.0.0)/charset_normalizer (2.0.12) doesn't match a supported version!
   RequestsDependencyWarning)
-INFO     centos_8 scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the 
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14 
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be 
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+INFO     centos7 scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
 INFO     Performing prerun...
-INFO     Set ANSIBLE_LIBRARY=/home/jenkins/.cache/ansible-compat/50b825/modules:/home/jenkins/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
-INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/jenkins/.cache/ansible-compat/50b825/collections:/home/jenkins/.ansible/collections:/usr/share/ansible/collections
-INFO     Set ANSIBLE_ROLES_PATH=/home/jenkins/.cache/ansible-compat/50b825/roles:/home/jenkins/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
-INFO     Using /home/jenkins/.ansible/roles/dmitriivl.dimarole symlink to current repository in order to enable Ansible to find the role using its expected full name.
-INFO     Running centos_8 > dependency
+INFO     Set ANSIBLE_LIBRARY=/home/jenkins/.cache/ansible-compat/600404/modules:/home/jenkins/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/jenkins/.cache/ansible-compat/600404/collections:/home/jenkins/.ansible/collections:/usr/share/ansible/collections
+INFO     Set ANSIBLE_ROLES_PATH=/home/jenkins/.cache/ansible-compat/600404/roles:/home/jenkins/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+INFO     Running centos7 > dependency
 WARNING  Skipping, missing the requirements file.
 WARNING  Skipping, missing the requirements file.
-INFO     Running centos_8 > lint
+INFO     Running centos7 > lint
 INFO     Lint is disabled.
-INFO     Running centos_8 > cleanup
+INFO     Running centos7 > cleanup
 WARNING  Skipping, cleanup playbook not configured.
-INFO     Running centos_8 > destroy
+INFO     Running centos7 > destroy
 INFO     Sanity checks: 'docker'
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
 
 PLAY [Destroy] *****************************************************************
 
@@ -99,12 +123,22 @@ TASK [Delete docker networks(s)] ***********************************************
 PLAY RECAP *********************************************************************
 localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
-INFO     Running centos_8 > syntax
+INFO     Running centos7 > syntax
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
 
-playbook: /opt/jenkins_agent/workspace/dimarole/molecule/centos_8/converge.yml
+playbook: /opt/jenkins_agent/workspace/another-vector-role/molecule/centos7/converge.yml
 /usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
   from cryptography.exceptions import InvalidSignature
-INFO     Running centos_8 > create
+INFO     Running centos7 > create
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
 
 PLAY [Create] ******************************************************************
 
@@ -115,38 +149,226 @@ skipping: [localhost] => (item=None)
 skipping: [localhost]
 
 TASK [Check presence of custom Dockerfiles] ************************************
-ok: [localhost] => (item={'image': 'docker.io/pycontribs/centos:8', 'name': 'instance', 'pre_build_image': True})
+ok: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
 
 TASK [Create Dockerfiles from image names] *************************************
-skipping: [localhost] => (item={'image': 'docker.io/pycontribs/centos:8', 'name': 'instance', 'pre_build_image': True})
+skipping: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
 
 TASK [Discover local Docker images] ********************************************
-ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'image': 'docker.io/pycontribs/centos:8', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
+ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
 
 TASK [Build an Ansible compatible image (new)] *********************************
-skipping: [localhost] => (item=molecule_local/docker.io/pycontribs/centos:8)
+skipping: [localhost] => (item=molecule_local/docker.io/pycontribs/centos:7)
 
 TASK [Create docker network(s)] ************************************************
 
 TASK [Determine the CMD directives] ********************************************
-ok: [localhost] => (item={'image': 'docker.io/pycontribs/centos:8', 'name': 'instance', 'pre_build_image': True})
+ok: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
 
 TASK [Create molecule instance(s)] *********************************************
 changed: [localhost] => (item=instance)
 
 TASK [Wait for instance(s) creation to complete] *******************************
 FAILED - RETRYING: Wait for instance(s) creation to complete (300 retries left).
-failed: [localhost] (item={'started': 1, 'finished': 0, 'ansible_job_id': '45608133058.8023', 'results_file': '/home/jenkins/.ansible_async/45608133058.8023', 'changed': True, 'failed': False, 'item': {'image': 'docker.io/pycontribs/centos:8', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item'}) => {"ansible_job_id": "45608133058.8023", "ansible_loop_var": "item", "attempts": 2, "changed": false, "finished": 1, "item": {"ansible_job_id": "45608133058.8023", "ansible_loop_var": "item", "changed": true, "failed": false, "finished": 0, "item": {"image": "docker.io/pycontribs/centos:8", "name": "instance", "pre_build_image": true}, "results_file": "/home/jenkins/.ansible_async/45608133058.8023", "started": 1}, "msg": "Unsupported parameters for (community.docker.docker_container) module: command_handling Supported parameters include: api_version, auto_remove, blkio_weight, ca_cert, cap_drop, capabilities, cgroup_parent, cleanup, client_cert, client_key, command, comparisons, container_default_behavior, cpu_period, cpu_quota, cpu_shares, cpus, cpuset_cpus, cpuset_mems, debug, default_host_ip, detach, device_read_bps, device_read_iops, device_requests, device_write_bps, device_write_iops, devices, dns_opts, dns_search_domains, dns_servers, docker_host, domainname, entrypoint, env, env_file, etc_hosts, exposed_ports, force_kill, groups, healthcheck, hostname, ignore_image, image, init, interactive, ipc_mode, keep_volumes, kernel_memory, kill_signal, labels, links, log_driver, log_options, mac_address, memory, memory_reservation, memory_swap, memory_swappiness, mounts, name, network_mode, networks, networks_cli_compatible, oom_killer, oom_score_adj, output_logs, paused, pid_mode, pids_limit, privileged, published_ports, pull, purge_networks, read_only, recreate, removal_wait_timeout, restart, restart_policy, restart_retries, runtime, security_opts, shm_size, ssl_version, state, stop_signal, stop_timeout, sysctls, timeout, tls, tls_hostname, tmpfs, tty, ulimits, user, userns_mode, uts, validate_certs, volume_driver, volumes, volumes_from, working_dir", "stderr": "/home/jenkins/.local/lib/python3.6/site-packages/requests/__init__.py:104: RequestsDependencyWarning: urllib3 (1.26.17) or chardet (5.0.0)/charset_normalizer (2.0.12) doesn't match a supported version!\n  RequestsDependencyWarning)\n/home/jenkins/.local/lib/python3.6/site-packages/paramiko/transport.py:33: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.\n  from cryptography.hazmat.backends import default_backend\n", "stderr_lines": ["/home/jenkins/.local/lib/python3.6/site-packages/requests/__init__.py:104: RequestsDependencyWarning: urllib3 (1.26.17) or chardet (5.0.0)/charset_normalizer (2.0.12) doesn't match a supported version!", "  RequestsDependencyWarning)", "/home/jenkins/.local/lib/python3.6/site-packages/paramiko/transport.py:33: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.", "  from cryptography.hazmat.backends import default_backend"]}
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '38146687822.322', 'results_file': '/home/jenkins/.ansible_async/38146687822.322', 'changed': True, 'failed': False, 'item': {'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
 
 PLAY RECAP *********************************************************************
-localhost                  : ok=4    changed=1    unreachable=0    failed=1    skipped=4    rescued=0    ignored=0
+localhost                  : ok=5    changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0
 
-WARNING  Retrying execution failure 2 of: ansible-playbook --inventory /home/jenkins/.cache/molecule/dimarole/centos_8/inventory --skip-tags molecule-notest,notest /home/jenkins/.local/lib/python3.6/site-packages/molecule_docker/playbooks/create.yml
-CRITICAL Ansible return code was 2, command was: ['ansible-playbook', '--inventory', '/home/jenkins/.cache/molecule/dimarole/centos_8/inventory', '--skip-tags', 'molecule-notest,notest', '/home/jenkins/.local/lib/python3.6/site-packages/molecule_docker/playbooks/create.yml']
-WARNING  An error occurred during the test sequence action: 'create'. Cleaning up.
-INFO     Running centos_8 > cleanup
+INFO     Running centos7 > prepare
+WARNING  Skipping, prepare playbook not configured.
+INFO     Running centos7 > converge
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+ok: [instance]
+
+TASK [Include another-vector-role] *********************************************
+
+TASK [another-vector-role : Install vector] ************************************
+included: /opt/jenkins_agent/workspace/another-vector-role/tasks/install_vector_docker.yml for instance
+
+TASK [another-vector-role : VECTOR | Install rpm] ******************************
+changed: [instance]
+
+TASK [another-vector-role : VECTOR | Template config] **************************
+changed: [instance]
+
+TASK [another-vector-role : Put docker package on hold] ************************
+ok: [instance]
+
+TASK [another-vector-role : Install vector] ************************************
+skipping: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=5    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Running centos7 > idempotence
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+ok: [instance]
+
+TASK [Include another-vector-role] *********************************************
+
+TASK [another-vector-role : Install vector] ************************************
+included: /opt/jenkins_agent/workspace/another-vector-role/tasks/install_vector_docker.yml for instance
+
+TASK [another-vector-role : VECTOR | Install rpm] ******************************
+ok: [instance]
+
+TASK [another-vector-role : VECTOR | Template config] **************************
+ok: [instance]
+
+TASK [another-vector-role : Put docker package on hold] ************************
+ok: [instance]
+
+TASK [another-vector-role : Install vector] ************************************
+skipping: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Idempotence completed successfully.
+INFO     Running centos7 > side_effect
+WARNING  Skipping, side effect playbook not configured.
+INFO     Running centos7 > verify
+INFO     Running Ansible Verifier
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Verify] ******************************************************************
+
+TASK [Example assertion] *******************************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+ok: [instance] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Check Vector configs] ****************************************************
+changed: [instance]
+
+TASK [Check Vector status] *****************************************************
+changed: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Verifier completed successfully.
+INFO     Running centos7 > cleanup
 WARNING  Skipping, cleanup playbook not configured.
-INFO     Running centos_8 > destroy
+INFO     Running centos7 > destroy
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Destroy molecule instance(s)] ********************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: Wait for instance(s) deletion to complete (300 retries left).
+changed: [localhost] => (item=instance)
+
+TASK [Delete docker networks(s)] ***********************************************
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Pruning extra files from scenario ephemeral directory
+Finished: SUCCESS
+</details>
+
+Создаем и запускаем следующую Job:
+
+<details>
+<summary>Declarative Pipeline Job сделана, сборка проходит успешно:</summary>
+Started by user admin
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on jenkins-agent in /opt/jenkins_agent/workspace/Pipeline another-vector-role
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (First)
+[Pipeline] sh
++ git clone https://github.com/DmitriiVl/another-vector-role.git .
+Cloning into '.'...
+[Pipeline] sh
++ molecule --version
+/usr/local/lib/python3.6/site-packages/requests/__init__.py:104: RequestsDependencyWarning: urllib3 (1.26.18) or chardet (5.0.0)/charset_normalizer (2.0.12) doesn't match a supported version!
+  RequestsDependencyWarning)
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the 
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14 
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be 
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+molecule 3.5.2 using python 3.6 
+    ansible:2.11.12
+    delegated:3.5.2 from molecule
+    docker:1.1.0 from molecule_docker requiring collections: community.docker>=1.9.1
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Second)
+[Pipeline] sh
++ molecule test -s centos7
+/usr/local/lib/python3.6/site-packages/requests/__init__.py:104: RequestsDependencyWarning: urllib3 (1.26.18) or chardet (5.0.0)/charset_normalizer (2.0.12) doesn't match a supported version!
+  RequestsDependencyWarning)
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the 
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14 
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be 
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+INFO     centos7 scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+INFO     Performing prerun...
+INFO     Set ANSIBLE_LIBRARY=/home/jenkins/.cache/ansible-compat/7d8936/modules:/home/jenkins/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/jenkins/.cache/ansible-compat/7d8936/collections:/home/jenkins/.ansible/collections:/usr/share/ansible/collections
+INFO     Set ANSIBLE_ROLES_PATH=/home/jenkins/.cache/ansible-compat/7d8936/roles:/home/jenkins/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+INFO     Running centos7 > dependency
+INFO     Running ansible-galaxy collection install -v community.docker:>=1.9.1
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running centos7 > lint
+INFO     Lint is disabled.
+INFO     Running centos7 > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running centos7 > destroy
+INFO     Sanity checks: 'docker'
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
 
 PLAY [Destroy] *****************************************************************
 
@@ -164,17 +386,198 @@ TASK [Delete docker networks(s)] ***********************************************
 PLAY RECAP *********************************************************************
 localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
+INFO     Running centos7 > syntax
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+playbook: /opt/jenkins_agent/workspace/Pipeline another-vector-role/molecule/centos7/converge.yml
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+INFO     Running centos7 > create
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Create] ******************************************************************
+
+TASK [Log into a Docker registry] **********************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+skipping: [localhost] => (item=None)
+skipping: [localhost]
+
+TASK [Check presence of custom Dockerfiles] ************************************
+ok: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
+
+TASK [Create Dockerfiles from image names] *************************************
+skipping: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
+
+TASK [Discover local Docker images] ********************************************
+ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
+
+TASK [Build an Ansible compatible image (new)] *********************************
+skipping: [localhost] => (item=molecule_local/docker.io/pycontribs/centos:7)
+
+TASK [Create docker network(s)] ************************************************
+
+TASK [Determine the CMD directives] ********************************************
+ok: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
+
+TASK [Create molecule instance(s)] *********************************************
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) creation to complete] *******************************
+FAILED - RETRYING: Wait for instance(s) creation to complete (300 retries left).
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '449851742403.14666', 'results_file': '/home/jenkins/.ansible_async/449851742403.14666', 'changed': True, 'failed': False, 'item': {'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=5    changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0
+
+INFO     Running centos7 > prepare
+WARNING  Skipping, prepare playbook not configured.
+INFO     Running centos7 > converge
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+ok: [instance]
+
+TASK [Include another-vector-role] *********************************************
+
+TASK [another-vector-role : Install vector] ************************************
+included: /opt/jenkins_agent/workspace/another-vector-role/tasks/install_vector_docker.yml for instance
+
+TASK [another-vector-role : VECTOR | Install rpm] ******************************
+changed: [instance]
+
+TASK [another-vector-role : VECTOR | Template config] **************************
+changed: [instance]
+
+TASK [another-vector-role : Put docker package on hold] ************************
+ok: [instance]
+
+TASK [another-vector-role : Install vector] ************************************
+skipping: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=5    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Running centos7 > idempotence
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+ok: [instance]
+
+TASK [Include another-vector-role] *********************************************
+
+TASK [another-vector-role : Install vector] ************************************
+included: /opt/jenkins_agent/workspace/another-vector-role/tasks/install_vector_docker.yml for instance
+
+TASK [another-vector-role : VECTOR | Install rpm] ******************************
+ok: [instance]
+
+TASK [another-vector-role : VECTOR | Template config] **************************
+ok: [instance]
+
+TASK [another-vector-role : Put docker package on hold] ************************
+ok: [instance]
+
+TASK [another-vector-role : Install vector] ************************************
+skipping: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Idempotence completed successfully.
+INFO     Running centos7 > side_effect
+WARNING  Skipping, side effect playbook not configured.
+INFO     Running centos7 > verify
+INFO     Running Ansible Verifier
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Verify] ******************************************************************
+
+TASK [Example assertion] *******************************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+ok: [instance] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Check Vector configs] ****************************************************
+changed: [instance]
+
+TASK [Check Vector status] *****************************************************
+changed: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Verifier completed successfully.
+INFO     Running centos7 > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running centos7 > destroy
+[DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the
+controller starting with Ansible 2.12. Current version: 3.6.8 (default, Nov 14
+2023, 16:29:52) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]. This feature will be
+removed from ansible-core in version 2.12. Deprecation warnings can be disabled
+ by setting deprecation_warnings=False in ansible.cfg.
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Destroy molecule instance(s)] ********************************************
+/usr/local/lib/python3.6/site-packages/ansible/parsing/vault/__init__.py:44: CryptographyDeprecationWarning: Python 3.6 is no longer supported by the Python core team. Therefore, support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.6.
+  from cryptography.exceptions import InvalidSignature
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: Wait for instance(s) deletion to complete (300 retries left).
+changed: [localhost] => (item=instance)
+
+TASK [Delete docker networks(s)] ***********************************************
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
 INFO     Pruning extra files from scenario ephemeral directory
-Build step 'Execute shell' marked build as failure
-Finished: FAILURE
-```
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+</details>
 
-Первоначальный playbook не правился, на агент устанавливались дополнительные пакеты:  
+В интерфейсе Jenkins выглядит следующим образом:  
 
-```
-pip3 install molecule-docker
-pip3 install molecule-podman
-pip3 install ansible-lint
-```
+![DECPIP](assets/decpip.jpg)  
 
-Прошу по возможности помочь разобраться. 
+Pipeline перенесен в JenkinsFile в репозиторий:  
+
+<https://gitlab.com/study-sg/vector-role/-/blob/main/Jenkinsfile>  
+
