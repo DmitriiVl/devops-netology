@@ -579,5 +579,5 @@ Finished: SUCCESS
 
 Pipeline перенесен в JenkinsFile в репозиторий:  
 
-<https://gitlab.com/study-sg/vector-role/-/blob/main/Jenkinsfile>  
+<https://github.com/DmitriiVl/devops-netology/blob/main/homeworks-netology/09-ci-04-jenkins/assets/Jenkinsfile>  
 
