@@ -579,7 +579,7 @@ Finished: SUCCESS
 
 Pipeline перенесен в JenkinsFile в репозиторий:  
 
-[Declarative pipeline]<https://github.com/DmitriiVl/devops-netology/blob/main/homeworks-netology/09-ci-04-jenkins/assets/Jenkinsfile>  
+[Declarative pipeline](https://github.com/DmitriiVl/devops-netology/blob/main/homeworks-netology/09-ci-04-jenkins/assets/Jenkinsfile)
 
 <details>
 <summary>Multibranch Pipeline Job сделана, JenkinsFile в репозитории виден:</summary>
@@ -638,5 +638,5 @@ node("jenkins-agent"){
 
 Scripted Pipeline перенесен в ScrJenkinsFile в репозиторий:  
 
-[Scripted pipeline]<https://github.com/DmitriiVl/devops-netology/blob/main/homeworks-netology/09-ci-04-jenkins/assets/ScrJenkinsfile>  
+[Scripted pipeline](https://github.com/DmitriiVl/devops-netology/blob/main/homeworks-netology/09-ci-04-jenkins/assets/ScrJenkinsfile)  
 
