@@ -1,0 +1,17 @@
+node("jenkins-agent"){
+    parameters {
+        booleanParam(name: "prod_run", defaultValue: false)
+    }
+    stage("Git checkout"){
+        git credentialsId: 'cb27fe9f-c125-441e-b6ee-2b783b5c882f', url: 'https://github.com/aragastmatb/example-playbook.git'
+    }
+    stage("Run playbook"){
+        if (params.prod_run){
+            sh 'ansible-playbook site.yml -i inventory/prod.yml'
+        }
+        else{
+            sh 'ansible-playbook site.yml -i inventory/prod.yml --check --diff'
+        }
+
+    }
+}

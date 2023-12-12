@@ -579,5 +579,64 @@ Finished: SUCCESS
 
 Pipeline перенесен в JenkinsFile в репозиторий:  
 
-<https://github.com/DmitriiVl/devops-netology/blob/main/homeworks-netology/09-ci-04-jenkins/assets/Jenkinsfile>  
+[Declarative pipeline]<https://github.com/DmitriiVl/devops-netology/blob/main/homeworks-netology/09-ci-04-jenkins/assets/Jenkinsfile>  
+
+<details>
+<summary>Multibranch Pipeline Job сделана, JenkinsFile в репозитории виден:</summary>
+Started by user admin
+[Mon Dec 11 18:10:58 MSK 2023] Starting branch indexing...
+18:10:58 Connecting to https://api.github.com using git/******
+Examining DmitriiVl/another-vector-role
+
+  Checking branches...
+
+  Getting remote branches...
+
+    Checking branch main
+
+  Getting remote pull requests...
+      ‘Jenkinsfile’ found
+    Met criteria
+No changes detected: main (still at 21af0ddb2d6f82609afa0f9ef326afe1eaebddfa)
+
+  1 branches were processed
+
+  Checking pull-requests...
+
+  0 pull requests were processed
+
+Finished examining DmitriiVl/another-vector-role
+
+[Mon Dec 11 18:10:59 MSK 2023] Finished branch indexing. Indexing took 1.2 sec
+Finished: SUCCESS
+</details>
+
+<details>
+<summary>Scripted Pipeline создан, коррективы, необходимые из условий задания, внесены:</summary>
+node("jenkins-agent"){
+    parameters {
+        booleanParam(name: "prod_run", defaultValue: false)
+    }
+    stage("Git checkout"){
+        git credentialsId: 'cb27fe9f-c125-441e-b6ee-2b783b5c882f', url: 'https://github.com/aragastmatb/example-playbook.git'
+    }
+    stage("Run playbook"){
+        if (params.prod_run){
+            sh 'ansible-playbook site.yml -i inventory/prod.yml'
+        }
+        else{
+            sh 'ansible-playbook site.yml -i inventory/prod.yml --check --diff'
+        }
+
+    }
+}
+</details>
+
+При параметризации в интерфейсе появился следующих checkbox:  
+
+![BUILDSP](assets/buildscriptedpipeline.jpg)  
+
+Scripted Pipeline перенесен в ScrJenkinsFile в репозиторий:  
+
+[Scripted pipeline]<https://github.com/DmitriiVl/devops-netology/blob/main/homeworks-netology/09-ci-04-jenkins/assets/ScrJenkinsfile>  
 
