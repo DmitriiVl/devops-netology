@@ -29,6 +29,7 @@
 В первую очередь аккумулируем требования, исходя из условий и представим их в виде таблицы:  
 
 | Resource type | DB server | Cache server | Frontend | Backend | **Summary** |
+| --- | --- | --- | --- | --- | --- |
 | *CPU* | 3 cores | 3 cores | 1 core | 10 cores | **17 cores** |
 | *RAM* | 12 Gb | 12 Gb | 250 Mb | 6 Gb | **30250 Mb** |
 | *Quantity of copies* | 3 copies | 3 copies | 5 copies | 10 copies | **21 copies** |
@@ -36,6 +37,7 @@
 Учитывая требование по отказоустойчивости сервисов БД и Кэш - развернем каждый из них на отдельной ноде плюс добавим для гарантии отказоустойчивости по одной дополнительной ноде. Исходя из этого, ориентируясь на возможности Yandex Cloud, получаем следующую картину:  
 
 | Resource type | DB server | Cache server | Frontend | Backend | Master node |
+| --- | --- | --- | --- | --- | --- |
 | *CPU per node* | 2 cores | 2 cores | 2 cores | 10 cores | 2 cores |
 | *RAM per node* | 4 Gb | 4 Gb | 4 Gb | 10 Gb | 4 Gb |
 | *Quantity of Nodes* | 4 nodes | 4 nodes | 1 node | 1 node | 1 node |
