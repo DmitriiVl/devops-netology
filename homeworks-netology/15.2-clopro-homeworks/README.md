@@ -238,6 +238,6 @@ resource "yandex_lb_network_load_balancer" "network-load-balancer" {
 
 ![NBAL](infrastructure/network-balancer.jpg)  
 
-Весь объем файлов для построения инфраструктуры, используемой в рамках задания (кроме информации, не подлежащей раскрытию и хранящейся в файле personal.auto.tfvars), можно посмотреть по [ссылке.](/infrastructure/)
+Весь объем файлов для построения инфраструктуры, используемой в рамках задания (кроме информации, не подлежащей раскрытию и хранящейся в файле personal.auto.tfvars), можно посмотреть по [ссылке.](https://github.com/DmitriiVl/devops-netology/tree/main/homeworks-netology/15.2-clopro-homeworks/infrastructure/)
 
 
