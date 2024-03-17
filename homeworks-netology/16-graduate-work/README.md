@@ -35,7 +35,7 @@ provider_installation {
 
 ### Часть первая. Создание vpc и подсетей в разных зонах доступности, разворачивание K8S кластера
 
-Для реализации поставленных задач по созданию vpc и подсетей в разных зонах доступности использовались конфигурационные файлы из папки [First part](/First part). Для обеспечения удаленного хранения файла-состояния инфраструктуры в terraform необходимо изменить файл *providers.tf* и привести его к следующему виду:  
+Для реализации поставленных задач по созданию vpc и подсетей в разных зонах доступности использовались конфигурационные файлы из папки [First part](First%20part/infrastructure/). Для обеспечения удаленного хранения файла-состояния инфраструктуры в terraform необходимо изменить файл *providers.tf* и привести его к следующему виду:  
 
 ```bash
 terraform {
@@ -256,7 +256,7 @@ kube-system   nodelocaldns-mfmjb                        1/1     Running   0     
 
 ### Часть вторая. Создание репозитория, Dockerfile, nginx config file  
 
-Готовим конфигурационный файл nginx и Dockerfile, все файлы доступны [по ссылке](/Second%20part/)
+Готовим конфигурационный файл nginx и Dockerfile, все файлы доступны [по ссылке](Second%20part/)
 
 Скачиваем Docker image командой и проверяем наличие образа:  
 
@@ -311,7 +311,7 @@ elastic/filebeat        8.7.0        b30b6dee943c   11 months ago    291MB
 sudo docker run -d --name app-k8s-graduate-work -p 80:80 app-k8s-graduate-work
 ```
 
-![PAGE](/Second%20part/opened-web-page.jpg)
+![PAGE](Second%20part/opened-web-page.jpg)
 
 Пушим в Registry DockerHub во вновь созданный репозиторий:  
 
@@ -319,7 +319,7 @@ sudo docker run -d --name app-k8s-graduate-work -p 80:80 app-k8s-graduate-work
 sudo docker push milvo/app-k8s-graduate-work:0.1
 ```
 
-![IMGREG](/Second%20part/imgreg.jpg)
+![IMGREG](Second%20part/imgreg.jpg)
 
 Скачать образ из репозитория можно по [ссылке](https://hub.docker.com/repository/docker/milvo/app-k8s-graduate-work/general)
 
@@ -355,9 +355,9 @@ Forwarding from [::1]:3000 -> 3000
 
 Проверяем работоспособность веб-интерфейса Grafana, убеждаемся, что все работает:  
 
-![GRAFAN](/Third%20part/grafana.jpg)  
+![GRAFAN](Third%20part/grafana.jpg)  
 
-Далее пишем манифест для Deployment и Service для запуска приложения. Все конфигурационные файлы размещены в соответствующей [папке](/Third%20part/).  
+Далее пишем манифест для Deployment и Service для запуска приложения. Все конфигурационные файлы размещены в соответствующей [папке](Third%20part/).  
 
 Создаем необходимый namespace, запускаем файл-манифест, убеждаемся, что поды и сервис поднялись:  
 
@@ -385,6 +385,6 @@ Forwarding from [::1]:8081 -> 80
 Handling connection for 8081
 ```
 
-![APPWEB](/Third%20part/appweb.jpg)  
+![APPWEB](Third%20part/appweb.jpg)  
 
 
