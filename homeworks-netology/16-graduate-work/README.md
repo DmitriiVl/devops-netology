@@ -387,4 +387,49 @@ Handling connection for 8081
 
 ![APPWEB](Third%20part/appweb.jpg)  
 
+### Часть третья. CI/CD и деплой приложения  
+
+В качестве инструмента для CI/CD был выбран встроенный в GitHub функционал - *GitHub Actions*. В репозитории с [приложением](https://github.com/DmitriiVl/app-k8s-graduate-work) были добавлены следующие переменные (секреты):  
+
+- DOCKERHUB_TOKEN - переменная для хранения значения токена для подключения к DockerHub
+- DOCKERHUB_USERNAME - переменная для хранения значения имени пользователя для подключения к DockerHub
+- DOCKER_REPO_NAME -  - переменная для хранения значения имени DockerHub репозитория
+- KUBE_CONFIG - переменная, хранящая строковое значение файла kubeconfig, зашифрованного в base64.  
+
+Далее в формале YAML был описан манифест, досутпный по [ссылке](Fourth%20part/github_actions_graduate_k8s.yml). В данном манифесте описыаются действия, необходимые для сборки и деплоя приложения, в частности:  
+
+- скачивания данных с репозитория и запуск сборки Docker файла.
+- назначение тегов сборкам.
+- push собранных файлов в DockerHub с назначенными тегами.  
+- создание файла kubeconfig из расшифрованной переменной KUBE_CONFIG.
+- переключение на необходимый K8S контекст и запуск авто-деплоя приложения с тегом latest в развернутый кластер. 
+
+Перед запуском манифеста получаем значение для записи в переменную KUBE_CONFIG:  
+
+```bash
+dmivlad@Ubuntu-Kuber:~$ cat config | base64
+```
+
+Скриншот успешно отработавшего манифеста GitHub Actions прилигается:  
+
+![CICD](Fourth%20part/CICD.jpg)   
+
+Также прилогаю данные успешного развертывания K8S манифеста:  
+
+```bash
+ubuntu@master-node-k8s:~$ sudo kubectl get deployment -n ns-graduate-work
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+app-k8s-graduate-work   3/3     3            3           3h7m
+ubuntu@master-node-k8s:~$ sudo kubectl get svc -n ns-graduate-work
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+svc-k8s-graduate-work   ClusterIP   10.233.52.164   <none>        8081/TCP   3h7m
+ubuntu@master-node-k8s:~$ sudo kubectl get pods -n ns-graduate-work
+NAME                                     READY   STATUS    RESTARTS   AGE
+app-k8s-graduate-work-5867864cbd-bwxfr   1/1     Running   0          3h7m
+app-k8s-graduate-work-5867864cbd-p2c4n   1/1     Running   0          3h7m
+app-k8s-graduate-work-5867864cbd-s67sp   1/1     Running   0          3h7m
+```
+
+
+
 
