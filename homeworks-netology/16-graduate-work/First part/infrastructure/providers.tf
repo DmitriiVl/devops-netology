@@ -12,8 +12,8 @@ backend "s3" {
   bucket = "conf-storage-bucket"
   region = "ru-central1"
   key    = "terraform.tfstate"
-  access_key = "YCAJEghF2OjSQEQyyytiUjjmk"
-  secret_key = "YCOVG51Eq7kUZU4g2fVHgEXS8AjiQQxvDynlNC83"
+  access_key = "YCA..."
+  secret_key = "YCO..."
 
   skip_region_validation      = true
   skip_credentials_validation = true
