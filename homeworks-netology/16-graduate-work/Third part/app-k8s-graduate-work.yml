@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-k8s-graduate-work
+  namespace: ns-graduate-work
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-k8s-graduate-work
+  template:
+    metadata:
+      labels:
+        app: app-k8s-graduate-work
+    spec:
+      containers:
+      - name: nginx-app-k8s-graduate-work
+        image: milvo/app-k8s-graduate-work:0.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-k8s-graduate-work
+  namespace: ns-graduate-work 
+spec:
+  selector:
+    app: app-k8s-graduate-work
+  ports:
+  - name: web
+    port: 8081
+    targetPort: 80
